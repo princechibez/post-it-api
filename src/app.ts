@@ -1,6 +1,7 @@
 import express, { Errback, NextFunction, Request, Response } from "express";
 import cors from "cors";
 
+import generalRouter from "./routes";
 import { IErrorObj } from "./interfaces/error.interface";
 import dotenv from "dotenv";
 dotenv.config()
@@ -10,10 +11,9 @@ const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-// Register all routes here
-app.get("/", (req: Request, res: Response) => res.send("Welcome to POST-IT-API..."));
-
 // Register all routes below
+app.use("/api/v1", generalRouter)
+
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response) => {
