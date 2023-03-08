@@ -7,7 +7,7 @@ const DATABASE = {
 
 const SCHEMAS = {
     USER_SCHEMA: "user",
-    POST_SCHEMA: "post",
+    POST_SCHEMA: "postit",
     COMMENT_SCHEMA: "comment",
 }
 

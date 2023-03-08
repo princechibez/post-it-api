@@ -18,6 +18,10 @@ const commentSchema = new Schema(
             ref: 'Post',
             required: true
         },
+        deleted: {
+            type: Boolean,
+            default: false,
+        }
 
     },
     {
