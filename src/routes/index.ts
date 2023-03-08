@@ -10,9 +10,9 @@ const generalRouter = express.Router();
 
 generalRouter
     .get("/", (req: Request, res: Response) => res.send("Welcome to POST-IT-API..."))
-    .use(userRouter)
+    .use("/users", userRouter)
     .use(authRouter)
-    .use(postRouter)
+    .use("/postit", postRouter)
 
 
 export default generalRouter

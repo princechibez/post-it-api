@@ -9,9 +9,13 @@ const postSchema = new Schema({
         required: [true, 'Title is required']
     },
     description: { type: String, required: true },
-    hashTags: [{ type: String }],
+    hashtags: [{ type: String }],
     thumbnail: {
-        type: String, required: true
+        type: String,
+    },
+    deleted: {
+        type: Boolean,
+        default: false,
     },
     // mentions specifies the list of users that can reply to this postit
     mentions: [{ type: Schema.Types.ObjectId, ref: "User" }]

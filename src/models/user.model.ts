@@ -15,12 +15,17 @@ const userSchema = new Schema({
     },
     profilePicture: {
         type: String,
+        default: "",
         required: false
     },
     role: {
         type: String,
         enum: ["user", "admin"],
         default: "user",
+    },
+    deleted: {
+        type: Boolean,
+        default: false,
     }
 }, { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } })
 
