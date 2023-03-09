@@ -16,8 +16,8 @@ export const UpdateUserValidator = [
     body("password")
         .isLength({ min: 8 })
         .withMessage("Password must be upto eight characters"),
-    body("profilePicture")
-        .not()
-        .isEmpty()
-        .withMessage("Please provide a profile picture")
+    // body("profilePicture")
+    //     .not()
+    //     .isEmpty()
+    //     .withMessage("Please provide a profile picture")
 ]

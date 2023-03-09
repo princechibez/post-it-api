@@ -27,4 +27,6 @@ app.use((err: IErrorObj, req: Request, res: Response, next: NextFunction) => {
     .json({ message: err.message, success: false });
 });
 
+// NB: Server listening is not done here, rather in ../bin/www.ts
+
 export default app

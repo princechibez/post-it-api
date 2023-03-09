@@ -30,7 +30,7 @@ const userSchema = new Schema({
 }, { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } })
 
 userSchema.virtual("posts", {
-    ref: "Post",
+    ref: "postit",
     localField: "_id",
     foreignField: "creator"
 })

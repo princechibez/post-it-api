@@ -1,10 +1,6 @@
-// get all posts
-// get a single post
-// update a post
-// delete a post
-
 import { User } from "../models";
 import { IUser, IUserQueryProps } from "../interfaces/user.interface";
+import { IErrorObj } from "../interfaces/error.interface";
 
 class POST_MANAGER {
   // get all users
@@ -37,10 +33,23 @@ class POST_MANAGER {
   }
 
   // Update a user
-  async updateUser(id: string, newData: Partial<IUser>) {
+  async updateUser(userId: string, newData: Partial<IUser>) {
     try {
+      let user = await User.findOne({ _id: userId });
+      // check if the current user is the requested user to be deleted
+      if (!user) {
+        let error: IErrorObj = new Error("Can't update another user")
+        error.statusCode = 400
+        throw error
+      }
+      if (user.deleted) {
+        let error: IErrorObj = new Error("User not found")
+        error.statusCode = 400
+        throw error
+      }
+
       return await User.findOneAndUpdate(
-        { $and: [{ _id: id }, { deleted: false }] }, newData, { new: true }
+        { $and: [{ _id: userId }, { deleted: false }] }, newData, { new: true }
       ).select("-password -deleted")
     } catch (err) {
       throw err;
@@ -48,10 +57,22 @@ class POST_MANAGER {
   }
 
   // Method for deleting a user
-  async deleteUser(id: string) {
+  async deleteUser(userId: string) {
     try {
+      let user = await User.findOne({ _id: userId });
+      // check if the current user is the owner of the postit
+      if (!user) {
+        let error: IErrorObj = new Error("Can't delete another user")
+        error.statusCode = 400
+        throw error
+      }
+      if (user.deleted) {
+        let error: IErrorObj = new Error("User not found")
+        error.statusCode = 400
+        throw error
+      }
       // Apply soft delete on this user
-      return await User.findOneAndUpdate({ _id: id }, { deleted: true }, { new: true })
+      return await user.updateOne({ deleted: true }, { new: true })
         .select("-password -deleted")
     } catch (err) {
       throw err;

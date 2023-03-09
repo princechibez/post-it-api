@@ -15,9 +15,9 @@ import connectDb from "../src/utilities/Database/database"
  */
 
 const server = http.createServer(app);
-// connect to socket server
+
 /**
- * Listen on provided port, on all network interfaces.
+ * Connect to DB and then listen on provided port, on all network interfaces.
  */
 
 connectDb(() => {

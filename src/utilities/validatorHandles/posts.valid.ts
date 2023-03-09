@@ -1,9 +1,6 @@
 import { body, check } from "express-validator"
 
 export const CreatePostValidator = [
-    body("creator", "creator is required")
-        .not()
-        .isEmpty(),
     body("title")
         .custom(async (value) => {
             if (value.toString().trim() === "") {
@@ -21,9 +18,6 @@ export const CreatePostValidator = [
 ]
 
 export const UpdatePostValidator = [
-    body("creator", "creator is required")
-        .not()
-        .isEmpty(),
     body("title")
         .custom(async (value) => {
             if (value.toString().trim() === "") {

@@ -1,13 +1,11 @@
 import { NextFunction, Request, Response } from "express";
-
 import { validationResult } from "express-validator";
-import { User } from "../models";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
-
-import { IErrorObj } from "../interfaces/error.interface";
 require("dotenv").config();
+
+import { User } from "../models";
+import { IErrorObj } from "../interfaces/error.interface";
 
 const SALT_ROUNDS = +process.env.SALT_ROUNDS!;
 const JWT_SECRET = process.env.JWT_SECRET!;
