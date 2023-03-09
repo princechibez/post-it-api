@@ -8,7 +8,7 @@ const commentSchema = new Schema(
             minlength: [3, 'Must be three characters long'],
             required: [true, 'Text is required']
         },
-        userId: {
+        commentator: {
             type: Schema.Types.ObjectId,
             required: true,
             ref: 'User'

@@ -9,7 +9,7 @@ const userRouter = express.Router()
 
 userRouter
     // get all users
-    .get("", isAuthenticated, userController.getAllUsers)
+    .get("", userController.getAllUsers)
 
     // get a single user: with handler(username) or ID
     .get("/:userId_username", userController.findOneUser)
@@ -21,7 +21,7 @@ userRouter
     .delete("/:userId", isAuthenticated, userController.delete_A_User)
 
     // get all posts belonging to a user: with handler(username) or ID
-    .get("/:userId_username/postits")
+    .get("/:userId_username/postits", userController.getAllUsersPostits)
 
     // get a particular post belonging to particular user: 
     .get("/:userId_username/postits/:postitId")
