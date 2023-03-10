@@ -100,7 +100,7 @@ class COMMENT_CONTROLLER {
             updatedComment &&
                 res
                     .status(200)
-                    .json({ data: updatedComment, success: true })
+                    .json({ message: "Comment updated", data: updatedComment, success: true })
         } catch (err) {
             next(err)
         }

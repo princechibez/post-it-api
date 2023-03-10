@@ -2,7 +2,7 @@ import mongoose, { model, Schema } from "mongoose";
 import { SCHEMAS } from "../utilities/constants";
 
 const postSchema = new Schema({
-    creator: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    creator: { type: Schema.Types.ObjectId, ref: SCHEMAS.USER_SCHEMA, required: true },
     draft: { type: Boolean, default: false },
     title: {
         type: String,
@@ -18,12 +18,12 @@ const postSchema = new Schema({
         default: false,
     },
     // mentions specifies the list of users that can reply to this postit
-    mentions: [{ type: Schema.Types.ObjectId, ref: "User" }]
+    mentions: [{ type: Schema.Types.ObjectId, ref: SCHEMAS.USER_SCHEMA }]
 
 }, { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } })
 
 postSchema.virtual("comments", {
-    ref: "comment",
+    ref: SCHEMAS.COMMENT_SCHEMA,
     localField: "_id",
     foreignField: "postId",
     options: {sort: {createdAt: -1}}

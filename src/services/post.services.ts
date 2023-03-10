@@ -26,31 +26,10 @@ class POST_MANAGER {
   async getAllPostit() {
     try {
       return await Postit.find({ deleted: false })
+        .populate({ path: "creator", select: "username profilePicture" })
         .select("-deleted")
         .lean()
         .sort({ createdAt: -1 })
-    } catch (err) {
-      throw err;
-    }
-  }
-
-  // get all postits of a user
-  async getAllUserPostit(userCredential: IUserQueryProps) {
-    try {
-      let userPostits;
-      if (userCredential.queryType == "id") {
-        userPostits = await Postit.find({ creator: userCredential.queryValue, deleted: false })
-          .select("-deleted")
-          .lean()
-          .sort({ createdAt: -1 })
-      } else if (userCredential.queryType == "username") {
-        userPostits = await User.findOne({ username: userCredential.queryValue, deleted: false })
-          .populate({ path: "posts", select: "-deleted" })
-          .select("posts")
-          .lean()
-          .sort({ createdAt: -1 })
-      }
-      return userPostits
     } catch (err) {
       throw err;
     }
@@ -60,6 +39,7 @@ class POST_MANAGER {
   async findOnePostit(id: string) {
     try {
       return await Postit.findOne({ $and: [{ _id: id }, { deleted: false }] })
+        .populate({ path: "creator", select: "username profilePicture" })
         .select("-deleted")
         .lean();
     } catch (err) {

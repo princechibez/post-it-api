@@ -11,11 +11,11 @@ const commentSchema = new Schema(
         commentator: {
             type: Schema.Types.ObjectId,
             required: true,
-            ref: 'User'
+            ref: SCHEMAS.USER_SCHEMA
         },
         postId: {
             type: Schema.Types.ObjectId,
-            ref: 'Post',
+            ref: SCHEMAS.POST_SCHEMA,
             required: true
         },
         deleted: {

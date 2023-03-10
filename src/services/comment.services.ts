@@ -3,7 +3,7 @@
 // update a post
 // delete a post
 
-import { Comment } from "../models";
+import { Comment, Postit } from "../models";
 import { IComment } from "../interfaces/comment.interface";
 import { IErrorObj } from "../interfaces/error.interface";
 
@@ -12,6 +12,13 @@ class COMMENT_MANAGER {
   // create a comment
   async createComment(commentData: IComment) {
     try {
+      // make sure the postit exists
+      const existingPostit = await Postit.findOne({ _id: commentData.postId })
+      if (!existingPostit) {
+        let error: IErrorObj = new Error("Postit not found")
+        error.statusCode = 400
+        throw error
+      }
       const newComment = new Comment({
         ...commentData,
       });
@@ -25,6 +32,7 @@ class COMMENT_MANAGER {
   async getComments(postitId: string) {
     try {
       return await Comment.find({ postId: postitId, deleted: false })
+        .populate({ path: "commentator", select: "username" })
         .select("-deleted")
         .lean()
         .sort({ createdAt: -1 })
@@ -39,6 +47,7 @@ class COMMENT_MANAGER {
       return await Comment.findOne(
         { _id: commentId, postId: postitId, deleted: false }
       )
+        .populate({ path: "commentator", select: "username" })
         .select("-deleted")
         .lean();
     } catch (err) {

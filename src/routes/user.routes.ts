@@ -1,13 +1,15 @@
 import express from "express";
 
 import userController from "../controllers/user.controller";
-// import "../controllers/user.controller";
+import userLookupRoutes from "./userLookup.routes";
 import isAuthenticated from "../middleware/authenticator";
 import { UpdateUserValidator } from "../utilities/validatorHandles/user.valid";
 
 const userRouter = express.Router()
 
 userRouter
+    // register all user lookup routes here
+    .use(userLookupRoutes)
     // get all users
     .get("", userController.getAllUsers)
 
@@ -19,18 +21,6 @@ userRouter
 
     // delete user
     .delete("/:userId", isAuthenticated, userController.delete_A_User)
-
-    // get all posts belonging to a user: with handler(username) or ID
-    .get("/:userId_username/postits", userController.getAllUsersPostits)
-
-    // get a particular post belonging to particular user: 
-    .get("/:userId_username/postits/:postitId")
-
-    // get all comments belonging to a post of a particular user: 
-    .get("/:userId_username/postits/:postitId/comments")
-
-    // get a particular comment belonging to a post of a particular user: 
-    .get("/:userId_username/postits/:postitId/comments/:commentId")
 
 
 export default userRouter;
