@@ -10,7 +10,7 @@
 
 - ## Links:
 
-  - [Live url](https://postit-api-api-v1.onrender.com)
+  - [Live url](https://postit-api-api-v1.onrender.com/api/v1)
   - [Entity Relationship Diagram or Data Modeling Link](https://dbdesigner.page.link/9k3iLLkbBhJSfBvZ9)
   - [API documentation](https://documenter.getpostman.com/view/21580500/2s93JtPhya)
 
