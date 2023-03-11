@@ -7,7 +7,6 @@
   - Deleting User, postit, comments
   - Get all User, postit, comments
   - Get single User, postit, comments
-  - Searching by filtering with room_names, prices and room_types
 
 - ## Links:
 
