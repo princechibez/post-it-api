@@ -13,7 +13,7 @@ const generalRouter = express_1.default.Router();
 // Register all server routes here
 generalRouter
     .get("/", (req, res) => res.send("Welcome to POST-IT-API..."))
-    .get("/docs", (req, res) => res.send(process.env.DOCS_URI))
+    .get("/docs", (req, res) => res.redirect(process.env.DOCS_URI))
     .use("/users", user_routes_1.default)
     .use(auth_routes_1.default)
     .use("/postit", post_routes_1.default);
