@@ -30,7 +30,7 @@ const avatarStyles = [
 
 const getRandomAvatarStyle = () => {
     // Your code here
-    return avatarStyles[Math.floor(Math.random() * avatarStyles.length)]
+    return avatarStyles[Math.floor(Math.random() * avatarStyles.length - 1)]
 }
 
 

@@ -17,6 +17,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 require("dotenv").config();
 const models_1 = require("../models");
+const generateAvatar_1 = __importDefault(require("../utilities/generateAvatar"));
 const SALT_ROUNDS = +process.env.SALT_ROUNDS;
 const JWT_SECRET = process.env.JWT_SECRET;
 class Auth_Controller {
@@ -33,6 +34,8 @@ class Auth_Controller {
                 }
                 //   set username to the name on email address
                 const username = email.split("@")[0];
+                //   Generate avatar for user's profile picture
+                const { avatarUrl, imgageTag } = yield (0, generateAvatar_1.default)(email);
                 //   hash user password before saving to DB.
                 const salt = yield bcrypt_1.default.genSalt(SALT_ROUNDS);
                 const hashedPassword = yield bcrypt_1.default.hash(password, salt);
@@ -40,6 +43,8 @@ class Auth_Controller {
                 const newUser = new models_1.User({
                     username,
                     password: hashedPassword,
+                    profilePicture: avatarUrl,
+                    profileImageTag: imgageTag,
                     email,
                     role,
                 });
