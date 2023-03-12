@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_validator_1 = require("express-validator");
 const user_services_1 = __importDefault(require("../services/user.services"));
+// import { generateAvatar } from "../utilities/generateAvatar";
 const userQueryParamsHandler = (userId_username) => {
     let userQueryParameter;
     /**
@@ -36,6 +37,7 @@ class USER_CONTROLLER {
     // get all users
     getAllUsers(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
+            // generateAvatar()
             try {
                 const users = yield user_services_1.default.getAllUsers();
                 users ?
