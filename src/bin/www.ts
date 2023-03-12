@@ -4,20 +4,20 @@
  * Module dependencies.
  */
 
-import app from "../src/app"
+import app from "../app"
 import debug from 'debug';
 debug('post-it-api:server')
 import http from 'http'
-import connectDb from "../src/utilities/Database/database"
+import connectDb from "../utilities/Database/database"
 
 /**
  * Create HTTP server.
  */
 
 const server = http.createServer(app);
-// connect to socket server
+
 /**
- * Listen on provided port, on all network interfaces.
+ * Connect to DB and then listen on provided port, on all network interfaces.
  */
 
 connectDb(() => {
