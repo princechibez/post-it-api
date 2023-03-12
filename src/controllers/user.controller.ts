@@ -6,6 +6,7 @@ import { IErrorObj } from "../interfaces/error.interface";
 import { IUserQueryProps } from "../interfaces/user.interface";
 import UserServices from "../services/user.services";
 import PostServices from "../services/post.services";
+// import { generateAvatar } from "../utilities/generateAvatar";
 
 const userQueryParamsHandler = (userId_username: string) => {
     let userQueryParameter: IUserQueryProps;
@@ -31,6 +32,7 @@ class USER_CONTROLLER {
 
     // get all users
     async getAllUsers(req: Request, res: Response, next: NextFunction) {
+        // generateAvatar()
         try {
             const users = await UserServices.getAllUsers()
             users ?
