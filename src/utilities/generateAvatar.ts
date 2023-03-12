@@ -34,11 +34,10 @@ const getRandomAvatarStyle = () => {
 }
 
 
-const generateRandomAvatar = async (email: any) => {
+const generateRandomAvatar = async (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const _email = email.replaceAll(' ', '');
-    console.log("here", typeof _email)
+    const _email = email.trim();
 
     const isValidEmail = emailRegex.test(_email);
     if (!isValidEmail) {
@@ -50,7 +49,7 @@ const generateRandomAvatar = async (email: any) => {
     const replaceAt = `-${entropySource()}-`
     const replaceDot = `-${entropySource()}-`
 
-    const seed = _email.replace('@', replaceAt).replaceAll('.', replaceDot);
+    const seed = _email.replace('@', replaceAt).replace('.', replaceDot);
 
     const randomAvatarStyle = getRandomAvatarStyle();
 

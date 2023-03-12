@@ -9,13 +9,13 @@ userLookupRoutes
     .get("/:userId_username/postits", userLookupController.getAllUsersPostits)
 
     // get a particular post belonging to particular user: 
-    .get("/:userId_username/postits/:postitId")
+    .get("/:userId/postits/:postitId", userLookupController.getOneUserPostit)
 
     // get all comments belonging to a post of a particular user: 
-    .get("/:userId_username/postits/:postitId/comments")
+    .get("/:userId/postits/:postitId/comments", userLookupController.getUserPostitComments)
 
     // get a particular comment belonging to a post of a particular user: 
-    .get("/:userId_username/postits/:postitId/comments/:commentId")
+    .get("/:userId/postits/:postitId/comments/:commentId", userLookupController.getUserPostitComment)
 
 
 export default userLookupRoutes;

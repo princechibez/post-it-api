@@ -46,6 +46,69 @@ class USER_LOOKUP_CONTROLLER {
             next(err)
         }
     };
+
+    // get one postit of a user
+    async getOneUserPostit(req: Request, res: Response, next: NextFunction) {
+        // get the request parameter
+        const userId = req.params.userId;
+        const postitId = req.params.postitId;
+
+        try {
+            const postit = await userLookupService.getOneUserPostit(userId, postitId)
+            postit ?
+                res
+                    .status(200)
+                    .json({ data: postit, success: true })
+                : res
+                    .status(400)
+                    .json({ message: "Postit not found", success: false });
+        } catch (err) {
+            next(err)
+        }
+    };
+
+    // get all comments of a user's postit
+    async getUserPostitComments(req: Request, res: Response, next: NextFunction) {
+        // get the request parameter
+        const userId = req.params.userId;
+        const postitId = req.params.postitId;
+
+        try {
+            const comments = await userLookupService.getUserPostitComments(userId, postitId)
+            comments ?
+                res
+                    .status(200)
+                    .json({ data: comments, success: true })
+                : res
+                    .status(400)
+                    .json({ message: "Comment not found", success: false });
+        } catch (err) {
+            next(err)
+        }
+    };
+
+    // get a single comment of a user's postit
+    async getUserPostitComment(req: Request, res: Response, next: NextFunction) {
+        // get the request parameter
+        const userId = req.params.userId;
+        const postitId = req.params.postitId;
+        const commentId = req.params.commentId;
+
+        try {
+            const comments = await userLookupService
+                .getUserPostitComment(userId, postitId, commentId)
+
+            comments ?
+                res
+                    .status(200)
+                    .json({ data: comments, success: true })
+                : res
+                    .status(400)
+                    .json({ message: "Comment not found", success: false });
+        } catch (err) {
+            next(err)
+        }
+    };
 }
 
 export default new USER_LOOKUP_CONTROLLER();
