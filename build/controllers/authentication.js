@@ -54,6 +54,7 @@ class Auth_Controller {
                         .json({ message: "user created", data: newUser, success: true });
             }
             catch (err) {
+                console.log(err);
                 next(err);
             }
         });
