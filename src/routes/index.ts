@@ -13,7 +13,9 @@ const generalRouter = express.Router();
 
 generalRouter
     .get("/", (req: Request, res: Response) => res.send("Welcome to POST-IT-API..."))
-    .get("/docs", (req: Request, res: Response) => res.send(process.env.DOCS_URI))
+    .get("/docs", (req: Request, res: Response) => res.send(
+        "<html><a href=`${process.env.DOCS_URI}`>Click to open API docs</a></html>"
+    ))
     .use("/users", userRouter)
     .use(authRouter)
     .use("/postit", postRouter)
