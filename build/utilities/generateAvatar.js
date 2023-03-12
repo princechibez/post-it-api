@@ -39,7 +39,7 @@ const avatarStyles = [
 ];
 const getRandomAvatarStyle = () => {
     // Your code here
-    return avatarStyles[Math.floor(Math.random() * avatarStyles.length)];
+    return avatarStyles[Math.floor(Math.random() * avatarStyles.length - 1)];
 };
 const generateRandomAvatar = (email) => __awaiter(void 0, void 0, void 0, function* () {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
