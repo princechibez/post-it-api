@@ -3,8 +3,6 @@ import cors from "cors";
 
 import generalRouter from "./routes";
 import { IErrorObj } from "./interfaces/error.interface";
-import dotenv from "dotenv";
-dotenv.config()
 
 const app = express();
 

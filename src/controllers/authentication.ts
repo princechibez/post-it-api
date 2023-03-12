@@ -6,6 +6,7 @@ require("dotenv").config();
 
 import { User } from "../models";
 import { IErrorObj } from "../interfaces/error.interface";
+import generateRandomAvatar from "../utilities/generateAvatar";
 
 const SALT_ROUNDS = +process.env.SALT_ROUNDS!;
 const JWT_SECRET = process.env.JWT_SECRET!;
@@ -26,6 +27,9 @@ class Auth_Controller {
             //   set username to the name on email address
             const username = email.split("@")[0]
 
+            //   Generate avatar for user's profile picture
+            const { avatarUrl, imgageTag } = await generateRandomAvatar(email)
+
             //   hash user password before saving to DB.
             const salt = await bcrypt.genSalt(SALT_ROUNDS);
             const hashedPassword = await bcrypt.hash(password, salt);
@@ -34,6 +38,8 @@ class Auth_Controller {
             const newUser = new User({
                 username,
                 password: hashedPassword,
+                profilePicture: avatarUrl,
+                profileImageTag: imgageTag,
                 email,
                 role,
             });

@@ -7,10 +7,10 @@
   - Deleting User, postit, comments
   - Get all User, postit, comments
   - Get single User, postit, comments
-  - Searching by filtering with room_names, prices and room_types
 
 - ## Links:
 
+  - [Live url](https://postit-api-api-v1.onrender.com/api/v1)
   - [Entity Relationship Diagram or Data Modeling Link](https://dbdesigner.page.link/9k3iLLkbBhJSfBvZ9)
   - [API documentation](https://documenter.getpostman.com/view/21580500/2s93JtPhya)
 
